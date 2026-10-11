@@ -1,0 +1,27 @@
+{
+  "name": "workflow-canvas",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A visual workflow builder: drag nodes onto a canvas, wire them together, edit them in an inspector and watch the JSON update live.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.6.3",
+    "vite": "^7.3.7"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
