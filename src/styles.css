@@ -3,8 +3,8 @@
   --bg-elev: #111218;
   --bg-elev-2: #16171f;
   --bg-input: #0b0c10;
-  --border: rgba(255,255,255,.08);
-  --border-strong: rgba(255,255,255,.14);
+  --border: rgb(var(--ds-ink) / .08);
+  --border-strong: rgb(var(--ds-ink) / .14);
   --text: #f7f8f8;
   --text-dim: #d0d3dc;
   --text-faint: #9a9fae;
@@ -824,22 +824,22 @@ body{font-feature-settings:"cv11","ss01","ss03"}
 ::selection{background:rgba(99,91,255,.45)}
 .topbar{height:58px;background:transparent;border-bottom:1px solid var(--border)}
 .brand h1{font-size:15px;letter-spacing:-.02em;font-weight:620}
-.panel,.canvas-col{background:linear-gradient(180deg,#14151c,#0e0f14);border-color:var(--border-strong);box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 20px 50px -30px rgba(0,0,0,.8)}
+.panel,.canvas-col{background:linear-gradient(180deg,#14151c,#0e0f14);border-color:var(--border-strong);box-shadow:0 1px 0 rgb(var(--ds-ink) / .05) inset,0 20px 50px -30px rgba(0,0,0,.8)}
 .panel-head h2{letter-spacing:.08em;color:var(--text-faint)}
-.btn{border-radius:999px;background:rgba(255,255,255,.04);transition:background .15s,border-color .15s,transform .1s,box-shadow .2s}
-.btn:hover:not(:disabled){background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22)}
+.btn{border-radius:999px;background:rgb(var(--ds-ink) / .04);transition:background .15s,border-color .15s,transform .1s,box-shadow .2s}
+.btn:hover:not(:disabled){background:rgb(var(--ds-ink) / .09);border-color:rgb(var(--ds-ink) / .22)}
 .btn:active:not(:disabled){transform:scale(.97)}
-.topbar-actions .btn[data-testid=load-example]{background:var(--text);color:#0b0b12;border-color:transparent;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 10px 30px -12px rgba(99,91,255,.8)}
+.topbar-actions .btn[data-testid=load-example]{background:var(--text);color:#0b0b12;border-color:transparent;box-shadow:0 0 0 1px rgb(var(--ds-ink) / .2),0 10px 30px -12px rgba(99,91,255,.8)}
 .topbar-actions .btn[data-testid=load-example]:hover{background:#fff}
 :focus-visible,.btn:focus-visible,.palette-item:focus-visible,.json-code:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}
 .palette-item{transition:background .15s,border-color .15s,transform .2s cubic-bezier(.2,.7,.2,1)}
 .palette-item:hover{transform:translateX(2px)}
 .canvas-scroll{background:#0a0b0f}
-.canvas-surface{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:24px 24px}
-.node{background:linear-gradient(180deg,#191a23,#121319);border-radius:12px;box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 10px 30px -10px rgba(0,0,0,.7);transition:box-shadow .2s,border-color .15s,transform .15s}
-.node:hover{border-color:rgba(255,255,255,.24);border-left-color:var(--c)}
-.node.is-dragging{transform:scale(1.02);box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 24px 50px -16px rgba(99,91,255,.55)}
+.canvas-surface{background-image:linear-gradient(rgb(var(--ds-ink) / .035) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--ds-ink) / .035) 1px,transparent 1px);background-size:24px 24px}
+.node{background:linear-gradient(180deg,#191a23,#121319);border-radius:12px;box-shadow:0 1px 0 rgb(var(--ds-ink) / .06) inset,0 10px 30px -10px rgba(0,0,0,.7);transition:box-shadow .2s,border-color .15s,transform .15s}
+.node:hover{border-color:rgb(var(--ds-ink) / .24);border-left-color:var(--c)}
+.node.is-dragging{transform:scale(1.02);box-shadow:0 1px 0 rgb(var(--ds-ink) / .08) inset,0 24px 50px -16px rgba(99,91,255,.55)}
 .canvas-empty strong{color:var(--text);font-weight:620;letter-spacing:-.01em}
 .canvas-tools .btn{background:rgba(14,15,20,.85);backdrop-filter:blur(10px)}
-.toast{border-radius:999px;background:rgba(22,23,31,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14)}
+.toast{border-radius:999px;background:rgba(22,23,31,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgb(var(--ds-ink) / .14)}
 @media (prefers-reduced-motion:reduce){.palette-item:hover,.node.is-dragging{transform:none}}

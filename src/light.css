@@ -1,0 +1,30 @@
+/* Light theme overrides (dark is the default and is unchanged) */
+:root[data-theme=light]{color-scheme:light;
+  --bg:#e9edf2;--bg-elev:#f3f5f8;--bg-elev-2:#f8f9fb;--bg-input:#f8f9fb;
+  --text:#2a303b;--text-dim:#3a414d;--text-faint:#5f6672;--accent:#5b56c2;--accent-soft:rgba(91,86,194,.16);
+  --danger:#c0324f;--ok:#17805a;--c-trigger:#17805a;--c-condition:#a86400;--c-action:#2563c9;--c-delay:#8a3fc4}
+:root[data-theme=light] .btn-danger{color:#a82a45}
+:root[data-theme=light] .palette-item:hover{background:rgba(42,48,59,.06)}
+:root[data-theme=light] .canvas-scroll{background:#eef1f5}
+:root[data-theme=light] .edge-line{stroke:#8a92a3}
+:root[data-theme=light] .edge.via-true .edge-line{stroke:color-mix(in srgb,var(--ok) 70%,#8a92a3)}
+:root[data-theme=light] .edge.via-false .edge-line{stroke:color-mix(in srgb,var(--danger) 60%,#8a92a3)}
+:root[data-theme=light] .edge:hover .edge-line{stroke:#5f6672}
+:root[data-theme=light] .edge.is-selected .edge-line{stroke:#5b56c2}
+:root[data-theme=light] .edge-badge rect{fill:#f8f9fb}
+:root[data-theme=light] .port{border-color:#8a92a3}
+:root[data-theme=light] .json-code{color:#3a414d;background:#f8f9fb}
+:root[data-theme=light] .tok-key{color:#4a45a8}
+:root[data-theme=light] .tok-str{color:#11704d}
+:root[data-theme=light] .tok-num{color:#985200}
+:root[data-theme=light] .tok-lit{color:#8a3fc4}
+:root[data-theme=light] .json-foot ul{color:#8a4b00}
+:root[data-theme=light] .toast{background:rgba(248,249,251,.94);box-shadow:0 20px 50px -24px rgba(30,40,60,.35)}
+:root[data-theme=light] .toast button{color:#4a45a8}
+:root[data-theme=light] *{scrollbar-color:#c3c9d3 transparent}
+:root[data-theme=light] .panel,:root[data-theme=light] .canvas-col{background:linear-gradient(180deg,#f8f9fb,#f1f3f6);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 16px 40px -26px rgba(30,40,60,.3)}
+:root[data-theme=light] .topbar-actions .btn[data-testid=load-example]{color:#f3f5f8;box-shadow:0 0 0 1px rgba(42,48,59,.2),0 10px 26px -14px rgba(91,86,194,.6)}
+:root[data-theme=light] .topbar-actions .btn[data-testid=load-example]:hover{background:#1f242d}
+:root[data-theme=light] :focus-visible,:root[data-theme=light] .btn:focus-visible{outline-color:#0e7490}
+:root[data-theme=light] .node{background:linear-gradient(180deg,#fbfcfd,#f3f5f8);box-shadow:0 1px 0 #fff inset,0 10px 26px -14px rgba(30,40,60,.3)}
+:root[data-theme=light] .canvas-tools .btn{background:rgba(248,249,251,.88)}
