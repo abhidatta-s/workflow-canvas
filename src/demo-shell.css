@@ -1,0 +1,40 @@
+/* ===== Shared demo shell — tokens mirror abhidatta portfolio (index.css) ===== */
+:root{
+  --ds-bg:#08090c;--ds-bg-2:#0d0e13;--ds-panel:#111218;--ds-panel-2:#16171f;
+  --ds-fg:#f7f8f8;--ds-fg-2:#d0d3dc;--ds-muted:#9a9fae;
+  --ds-line:rgba(255,255,255,.08);--ds-line-2:rgba(255,255,255,.14);--ds-line-3:rgba(255,255,255,.22);
+  --ds-c1:#635bff;--ds-c2:#ff5c9e;--ds-c3:#22d3ee;--ds-c4:#ffb845;
+  --ds-ok:#3ddc97;--ds-bad:#ff6b8b;
+  --ds-r-sm:8px;--ds-r:12px;--ds-r-lg:18px;
+  --ds-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 20px 50px -30px rgba(0,0,0,.8);
+  --ds-shadow-hi:0 1px 0 rgba(255,255,255,.08) inset,0 30px 80px -30px rgba(99,91,255,.55);
+  --ds-ease:cubic-bezier(.2,.7,.2,1);
+  --ds-font:"Inter Variable",Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ds-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+.ds-texture{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(var(--ds-line) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,var(--ds-line) 1px,transparent 1px) 0 0/64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,#000 30%,transparent 90%);mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,#000 30%,transparent 90%);opacity:.6}
+.ds-skip{position:fixed;left:16px;top:-60px;z-index:100;background:var(--ds-fg);color:#000;padding:10px 14px;border-radius:10px;font-weight:600;text-decoration:none}
+.ds-skip:focus{top:16px}
+.ds-bar{position:sticky;top:10px;z-index:30;display:flex;align-items:center;gap:12px;max-width:1280px;margin:10px auto 0;width:calc(100% - 24px);
+  padding:7px 8px 7px 14px;border-radius:12px;border:1px solid var(--ds-line-2);background:rgba(10,11,16,.62);
+  backdrop-filter:blur(16px) saturate(170%);-webkit-backdrop-filter:blur(16px) saturate(170%);box-shadow:0 8px 30px rgba(0,0,0,.35);
+  font-family:var(--ds-font);font-size:13px;color:var(--ds-fg-2)}
+.ds-bar a{color:inherit;text-decoration:none}
+.ds-bar__home{display:inline-flex;align-items:center;gap:8px;padding:4px 6px;margin-left:-6px;border-radius:8px;transition:background .15s}
+.ds-bar__home:hover{background:rgba(255,255,255,.06);color:var(--ds-fg)}
+.ds-bar__arrow{transition:transform .2s var(--ds-ease)}.ds-bar__home:hover .ds-bar__arrow{transform:translateX(-3px)}
+.ds-bar__logo{font-weight:700;color:var(--ds-fg);letter-spacing:-.03em}.ds-bar__logo span{color:var(--ds-c2)}
+.ds-bar__sep{color:var(--ds-muted)}.ds-bar__lab{color:var(--ds-muted)}
+.ds-bar__name{font-weight:550;color:var(--ds-fg);padding-left:12px;border-left:1px solid var(--ds-line-2)}
+.ds-bar__cta{margin-left:auto;padding:6px 12px;border-radius:999px;border:1px solid var(--ds-line-2);background:rgba(255,255,255,.04);color:var(--ds-fg)!important;font-weight:550;transition:background .15s,border-color .15s}
+.ds-bar__cta:hover{background:rgba(255,255,255,.09);border-color:var(--ds-line-3)}
+.ds-bar :focus-visible{outline:2px solid var(--ds-c3);outline-offset:2px}
+@media (max-width:560px){.ds-bar__sep,.ds-bar__lab{display:none}.ds-bar__cta{display:none}}
+@keyframes ds-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes ds-shimmer{to{background-position:-200% 0}}
+.ds-rise{animation:ds-rise .6s var(--ds-ease) both;animation-delay:calc(var(--i,0) * 45ms)}
+@media (prefers-reduced-motion:reduce){.ds-rise{animation:none}.ds-bar__arrow{transition:none}}
+/* App-shell variant: full-bleed strip for full-viewport tools */
+.ds-bar--app{position:relative;top:0;margin:0;width:100%;max-width:none;border-radius:0;border-width:0 0 1px;box-shadow:none;padding:5px 12px;flex:none;background:rgba(8,9,12,.9)}

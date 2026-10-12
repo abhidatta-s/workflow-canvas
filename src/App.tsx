@@ -10,6 +10,7 @@ import { Palette } from './components/Palette';
 import { Canvas } from './components/Canvas';
 import { Inspector } from './components/Inspector';
 import { JsonPreview } from './components/JsonPreview';
+import DemoBar from './components/DemoBar';
 import { LogoMark, TrashIcon } from './components/Icons';
 
 interface Toast {
@@ -138,6 +139,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <DemoBar name="Workflow Canvas" app />
       <header className="topbar">
         <div className="brand">
           <LogoMark />
@@ -171,7 +173,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="workspace">
+      <main className="workspace" id="main">
         <Palette onQuickAdd={quickAdd} onDropAt={dropAt} />
         <section className="canvas-col" aria-label="Canvas">
           <Canvas

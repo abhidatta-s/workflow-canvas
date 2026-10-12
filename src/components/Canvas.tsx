@@ -113,6 +113,9 @@ export function Canvas({
       <div
         className="canvas-scroll"
         ref={scrollRef}
+        tabIndex={0}
+        role="region"
+        aria-label="Workflow canvas (scrollable)"
         data-testid="canvas-scroll"
         onPointerDown={(e) => {
           if (e.target === e.currentTarget || e.target === surfaceRef.current) onSelect(null);
