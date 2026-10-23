@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" role="img" aria-label="Workflow Canvas architecture: palette, canvas and inspector dispatch actions to a reducer; graph rules guard connections; state feeds a live JSON preview and autosaves to localStorage.">
+<title>Workflow Canvas architecture: palette, canvas and inspector dispatch actions to a reducer; graph rules guard connections; state feeds a live JSON preview and autosaves to localStorage.</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#a5b4fc"/></marker></defs>
+<rect width="960" height="470" rx="16" fill="#151722"/>
+<text x="32" y="44" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="600" fill="#e6e8f0" text-anchor="start">Workflow Canvas</text>
+<text x="32" y="68" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="400" fill="#a3acc2" text-anchor="start">A visual editor that produces workflow JSON. It builds and validates graphs; it does not execute them.</text>
+<rect x="24" y="84" width="912" height="362" rx="12" fill="none" stroke="#3a3f5c" stroke-dasharray="4 4"/>
+<text x="38" y="104" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#7c869f" text-anchor="start">BROWSER  (REACT 18 + VITE + TYPESCRIPT, NO GRAPH LIBRARY)</text>
+<rect x="48" y="118" width="232" height="72" rx="10" fill="#1e2132" stroke="#3a3f5c" stroke-width="1"/>
+<text x="64" y="144" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#e6e8f0" text-anchor="start">Palette</text>
+<text x="64" y="164" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">Trigger, Condition, Action, Delay</text>
+<text x="64" y="182" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">drag or click to add</text>
+<rect x="48" y="204" width="232" height="72" rx="10" fill="#1e2132" stroke="#3a3f5c" stroke-width="1"/>
+<text x="64" y="230" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#e6e8f0" text-anchor="start">Canvas</text>
+<text x="64" y="250" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">pointer events, SVG bezier edges</text>
+<text x="64" y="268" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">8 px grid, 2400 x 1600 surface</text>
+<rect x="48" y="290" width="232" height="72" rx="10" fill="#1e2132" stroke="#3a3f5c" stroke-width="1"/>
+<text x="64" y="316" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#e6e8f0" text-anchor="start">Inspector</text>
+<text x="64" y="336" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">label and per-type config</text>
+<rect x="340" y="160" width="260" height="96" rx="10" fill="#23273b" stroke="#6366f1" stroke-width="1.5"/>
+<rect x="340" y="170" width="3" height="76" rx="1.5" fill="#a5b4fc"/>
+<text x="356" y="186" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#a5b4fc" text-anchor="start">reducer.ts</text>
+<text x="356" y="206" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">add, move, connect, label,</text>
+<text x="356" y="224" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">config, delete, load</text>
+<text x="356" y="242" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">one Workflow state object</text>
+<rect x="340" y="290" width="260" height="112" rx="10" fill="#1e2132" stroke="#3a3f5c" stroke-width="1"/>
+<text x="356" y="316" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#e6e8f0" text-anchor="start">graph.ts rules</text>
+<text x="356" y="336" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">reject self-links and duplicates</text>
+<text x="356" y="354" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">reject loops (reachability check)</text>
+<text x="356" y="372" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">flag missing trigger and</text>
+<text x="356" y="390" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">unconnected branches</text>
+<rect x="660" y="118" width="252" height="96" rx="10" fill="#1e2132" stroke="#3a3f5c" stroke-width="1"/>
+<text x="676" y="144" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#e6e8f0" text-anchor="start">JSON preview</text>
+<text x="676" y="164" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">nodes and edges, highlighted</text>
+<text x="676" y="182" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">validation hints</text>
+<text x="676" y="200" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">copy to clipboard</text>
+<rect x="660" y="232" width="252" height="72" rx="10" fill="#1e2132" stroke="#3a3f5c" stroke-width="1"/>
+<text x="676" y="258" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#e6e8f0" text-anchor="start">localStorage</text>
+<text x="676" y="278" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">autosave, defensive parsing</text>
+<rect x="660" y="318" width="252" height="72" rx="10" fill="#1e2132" stroke="#3a3f5c" stroke-width="1"/>
+<text x="676" y="344" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#e6e8f0" text-anchor="start">Toolbar</text>
+<text x="676" y="364" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="400" fill="#a3acc2" text-anchor="start">load example, clear, undo toast</text>
+<path d="M280 154 L310 154 L310 190 L340 190" fill="none" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M280 240 L340 240" fill="none" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="310" y="232" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#a3acc2" text-anchor="middle">dispatch</text>
+<path d="M280 326 L310 326 L310 236" fill="none" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M470 290 L470 256" fill="none" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="530" y="278" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" font-weight="400" fill="#a3acc2" text-anchor="middle">connect check</text>
+<path d="M600 190 L630 190 L630 166 L660 166" fill="none" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M600 230 L630 230 L630 268 L660 268" fill="none" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M660 354 L620 354 L620 246 L600 246" fill="none" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a)"/>
+</svg>

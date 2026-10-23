@@ -1,54 +1,33 @@
 # Workflow Canvas
 
-A visual workflow builder that runs entirely in the browser. Drag **Trigger**, **Condition**, **Action** and **Delay** nodes onto a canvas, wire them together, tweak each one in an inspector and watch the workflow's JSON update live.
+**Drag, connect and configure automation steps on a canvas, and get a clean, validated workflow JSON as you build.**
 
-The drag, connect and edge rendering are hand-written with pointer events and SVG. There is no graph library. The only runtime dependencies are `react` and `react-dom`.
+[![React](https://img.shields.io/badge/React-18-6366f1)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5%20strict-6366f1)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-6366f1)](https://vite.dev/)
+[![SVG](https://img.shields.io/badge/edges-hand--written%20SVG-64748b)](src/components/Canvas.tsx)
+[![Runtime deps](https://img.shields.io/badge/runtime%20deps-react%20%2B%20react--dom-64748b)](package.json)
+
+**Live demo:** https://workflow-canvas-three.vercel.app
+
+> **Example:** drop a Trigger set to "Record created", wire it to a Condition `ticket.priority == "urgent"`, send the `true` branch to a Slack action and the `false` branch to a 1 hour Delay. Try to wire the Delay back into the Condition and the canvas refuses with "That connection would create a loop." The JSON panel shows the finished graph, ready to copy.
 
 ![Workflow Canvas screenshot](docs/screenshot.png)
 
-## Live Demo
+## Architecture
 
-**https://workflow-canvas.vercel.app**
+![Workflow Canvas architecture](assets/architecture.svg)
 
-> Placeholder URL. Replace it with the real deployment URL once the project is live.
+A static single-page app. Dragging, connecting and edge drawing are written by hand with pointer events and SVG; there is no graph or diagram library.
 
-## Features
+## How it works
 
-- **Node palette.** Drag a node type onto the canvas, or click it to drop it in the first free spot. Palette items are real buttons, so Enter and Space work too.
-- **Canvas.** Move nodes by dragging (snaps to an 8px grid). The canvas is 2400 × 1600 and scrolls.
-- **Connections.** Drag from an output dot to any node to draw a bezier edge.
-  - Condition nodes have two outputs, `true` and `false`.
-  - Triggers have no input.
-  - Self-links, duplicates and loops are rejected with a toast.
-  - Each output port holds one edge. Connecting it again replaces the old one.
-- **Inspector.** Click a node to edit its label and type-specific settings.
-  - Trigger: event type, plus a cron expression for schedules.
-  - Condition: expression.
-  - Action: action type (email, Slack, HTTP request, create record, script) with its own parameters.
-  - Delay: duration and unit.
-- **Live JSON preview.** Nodes (`id`, `type`, `label`, `config`, `position`) and edges (`from`, `to`, `port`), syntax-highlighted and updated as you work. One-click copy, with a fallback for browsers or contexts without the async Clipboard API.
-- **Validation hints.** The JSON panel flags a missing trigger, nodes with no incoming connection and unconnected condition branches.
-- **Delete.** Press `Delete` / `Backspace` or use the button. Deleting a node removes its connections. Shortcuts are ignored while you type in a field.
-- **Persistence.** Autosaves to `localStorage`. **Load example** and **Clear** are in the toolbar, and both offer an **Undo** toast.
-- **Dark UI.** Plain CSS with design tokens as CSS variables. No UI framework.
-
-## Getting Started
-
-Requires Node.js 20.19 or newer.
-
-```bash
-npm install
-npm run dev        # http://localhost:5173
-```
-
-## Scripts
-
-| Script              | What it does                                  |
-| ------------------- | --------------------------------------------- |
-| `npm run dev`       | Start the Vite dev server                     |
-| `npm run build`     | Type-check (`tsc --noEmit`), then build to `dist/` |
-| `npm run preview`   | Serve the production build locally            |
-| `npm run typecheck` | Type-check only                               |
+1. **Node types.** `nodeDefs.ts` defines Trigger, Condition, Action and Delay: their ports, config fields, defaults and geometry. Conditions have `true` and `false` outputs, Triggers have no input.
+2. **One reducer.** Palette, Canvas and Inspector dispatch actions (`add`, `move`, `connect`, `label`, `config`, `deleteSelection`, `load`) to `reducer.ts`, which owns the single `Workflow` state. Moves snap to an 8 px grid on a 2400 x 1600 surface.
+3. **Connection rules.** `graph.ts` rejects self-links, duplicates and any edge that would make a cycle, using a reachability check from the target back to the source. Each output port holds one edge; reconnecting replaces it.
+4. **Validation hints.** `validateWorkflow` flags a missing trigger, nodes with no incoming edge and unconnected condition branches.
+5. **Live JSON.** `buildWorkflowJson` serializes nodes (`id`, `type`, `label`, `config`, `position`) and edges (`from`, `to`, `port`) for the highlighted preview and copy button.
+6. **Persistence.** `storage.ts` autosaves to `localStorage` and parses defensively on load. Load example and Clear both offer an Undo toast.
 
 ## Workflow JSON
 
@@ -56,58 +35,40 @@ npm run dev        # http://localhost:5173
 {
   "version": 1,
   "nodes": [
-    {
-      "id": "n_urgent",
-      "type": "condition",
-      "label": "Is it urgent?",
-      "config": { "expression": "ticket.priority == \"urgent\"" },
-      "position": { "x": 232, "y": 144 }
-    }
+    { "id": "n_urgent", "type": "condition", "label": "Is it urgent?",
+      "config": { "expression": "ticket.priority == \"urgent\"" }, "position": { "x": 232, "y": 144 } }
   ],
-  "edges": [
-    { "id": "e_2", "from": "n_urgent", "to": "n_page", "port": "true" }
-  ]
+  "edges": [ { "id": "e_2", "from": "n_urgent", "to": "n_page", "port": "true" } ]
 }
 ```
 
-`port` is `out` for single-output nodes, or `true` / `false` for conditions.
+## Run locally
 
-## Project Structure
+Requires Node.js 20.19 or newer.
 
-```
-workflow-canvas/
-├── docs/screenshot.png        # README screenshot (1440×900)
-├── public/favicon.svg
-├── index.html
-├── src/
-│   ├── main.tsx               # entry point
-│   ├── App.tsx                # layout, keyboard shortcuts, toasts, wiring
-│   ├── reducer.ts             # workflow state transitions
-│   ├── types.ts               # Workflow / node / edge types
-│   ├── nodeDefs.ts            # node types: ports, config fields, defaults, geometry
-│   ├── graph.ts               # connection rules, validation, JSON export
-│   ├── example.ts             # starter workflow
-│   ├── storage.ts             # localStorage load/save with defensive parsing
-│   ├── utils.ts               # ids, clamp/snap, clipboard helper
-│   ├── styles.css             # theme tokens and all styling
-│   └── components/
-│       ├── Palette.tsx        # draggable node types
-│       ├── Canvas.tsx         # surface, SVG edges, node dragging, connecting
-│       ├── Inspector.tsx      # label and per-type config editor
-│       ├── JsonPreview.tsx    # highlighted JSON, copy, validation
-│       └── Icons.tsx
-├── package.json
-├── tsconfig.json              # strict mode
-└── vite.config.ts
+```bash
+npm install
+npm run dev         # http://localhost:5173
+npm run build       # strict type-check, then build to dist/
 ```
 
-## Deploy Notes
+No environment variables are needed, so there is no `.env.example`.
 
-This is a static Vite app and deploys to Vercel with zero config:
+## Evaluation
 
-1. Push the repo to GitHub (private is fine).
-2. In Vercel, choose **Add New → Project** and import the repo.
-3. Keep the detected defaults: framework **Vite**, build command `npm run build`, output directory `dist`.
-4. If the demo URL should be public, turn off **Deployment Protection → Vercel Authentication** for the project. It is on by default for new projects.
+There is no automated test suite yet. `graph.ts` and `reducer.ts` are pure functions, so connection rules and validation are the natural first unit tests.
 
-No environment variables are needed. Everything is stored in the visitor's own browser.
+## Honest limitations
+
+- A personal portfolio prototype with no real users.
+- It is an editor, not an engine. Workflows are never executed, scheduled or sent anywhere; the email, Slack and HTTP actions are configuration only.
+- Condition expressions are stored as plain text and are not parsed or checked.
+- No zoom, pan gestures, multi-select or auto-layout.
+- One workflow per browser, stored in `localStorage`. No import from JSON yet.
+- No automated tests.
+
+## Stack
+
+React 18, TypeScript 5 (strict), Vite 7, hand-written SVG and pointer events, plain CSS with variables, browser `localStorage`.
+
+Part of the Lab at https://www.abhidattasrichandan.com
